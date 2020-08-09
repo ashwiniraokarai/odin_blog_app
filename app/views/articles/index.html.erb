@@ -1,0 +1,8 @@
+<p>Rendering index.html via articles#index</p>
+
+<ul><% @articles.each do |article| %>
+  <li>
+    <%= link_to article.title, article_path(article.id) %>
+  </li>
+<% end %>
+</ul>
