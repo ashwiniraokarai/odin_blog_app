@@ -3,5 +3,6 @@
 <div>
   <b><%= @article.title %></b>
   <p><%= @article.body %></p>
-  <%= link_to "Back to index", articles_path %>
+  <p><%= link_to "Back to index", articles_path %></p>
+  <p><%= link_to "Create a new article!", new_article_path %></p>
 </div>
