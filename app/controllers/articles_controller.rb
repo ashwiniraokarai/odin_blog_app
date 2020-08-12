@@ -23,4 +23,10 @@ class ArticlesController < ApplicationController
     # call the show page with
     redirect_to article_path(@article.id)
   end
+
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+    redirect_to articles_path
+  end
 end
