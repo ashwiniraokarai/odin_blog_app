@@ -18,9 +18,11 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(article_params)
-    @article.save
-    # call the show page with
+    @article = Article.create(article_params)
+    # popular alternative:
+      # @article = Article.new(article_params)
+      # @article.save
+    # finally call the show page
     redirect_to article_path(@article.id)
   end
 
@@ -28,5 +30,15 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     @article.destroy
     redirect_to articles_path
+  end
+
+  def edit
+    @article = Article.find(params[:id])
+  end
+
+  def update
+    @article = Article.find(params[:id])
+    @article.update(article_params)
+    redirect_to article_path(@article)
   end
 end
