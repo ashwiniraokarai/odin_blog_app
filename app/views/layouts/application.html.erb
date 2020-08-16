@@ -10,6 +10,8 @@
   </head>
 
   <body>
+    <%#= include flash.notice here so you can avoid repeating it in every view you need%>
+    <%#= flash.notice %>
     <%= yield %>
   </body>
 </html>

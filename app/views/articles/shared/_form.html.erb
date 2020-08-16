@@ -2,7 +2,7 @@
 <%# the above line simply says "create/ update a form for the object named @article" %>
 
 <ul>
-<% @article.error.full_messages do |error| %>
+<% @article.errors.full_messages do |error| %>
   <li><%= error %></li>
 <% end %>
 </ul>
