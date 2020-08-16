@@ -1,11 +1,17 @@
+<%= flash.notice %>
+<%= flash.alert %>
+
 <%= form_for(@article) do |form| %>
 <%# the above line simply says "create/ update a form for the object named @article" %>
 
-<ul>
-<% @article.errors.full_messages do |error| %>
-  <li><%= error %></li>
+<% if @article.errors.any? %>
+  <p> Errors extracted in view: </p>
+  <ul>
+    <% @article.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+      <% end %>
+  </ul>
 <% end %>
-</ul>
 
 <p>
 <%= form.label :title %>
@@ -25,3 +31,5 @@
 </p>
 
 <% end %>
+
+<%= link_to "No, take me back to index", articles_path %>

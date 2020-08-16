@@ -18,17 +18,21 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.create(article_params)
-    flash.notice = "Your article '#{@article.title}' has been saved!"
-    # popular alternative:
-      # @article = Article.new(article_params)
-      # if @article.save then set a success message flash.notice = "Save successful" and redirect_to show page
-      # else set set an alert for the user using flash.alert = "Save unsuccessful"
-      # ..and render new page again to allow for changes and resubmission
-      # inspect further details using active model's errors method @article.errors.full_messages
+    @article = Article.new(article_params)
 
-    # call the show page
-    redirect_to article_path(@article.id)
+    if @article.save
+      flash.notice = "Flash: Your article '#{@article.title}' has been saved!"
+      # call the show page
+      redirect_to article_path(@article.id)
+    elsif @article.errors.any?
+      flash.alert  = "Flash: There was a problem saving your article. Please correct these errors and try again."
+      #show filled form again so user can correct error messages extracted and shown to them in the view
+      render action: :new
+    else
+      flash.notice = "Flash: There was a problem saving your article and I am not sure why. Please try again."
+      #show filled form again so user can try again
+      render action: :new
+    end
   end
 
   def destroy
@@ -45,7 +49,13 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
     @article.update(article_params)
-    flash.notice = "Your article '#{@article.title}' has been updated!"
-    redirect_to article_path(@article)
+
+    if @article.errors.any?
+      flash.alert = "There was a problem saving your article. Please correct these errors and try again."
+      render action: :edit
+    else
+      flash.notice = "Your article '#{@article.title}' has been updated!"
+      redirect_to article_path(@article)
+    end
   end
 end
