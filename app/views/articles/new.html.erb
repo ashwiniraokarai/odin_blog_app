@@ -1,21 +1,3 @@
 <p>Rendering new.html.erb via articles#new method</p>
 
-  <%= form_for(@article) do |form| %>
-  <%# the above line simply says "create a form for the object named @article" %>
-  <p>
-  <%= form.label :title %>
-  <%= form.text_field :title %>
-  </p>
-
-  <p>
-  <%= form.label :body %>
-  <%= form.text_area :body %>
-  </p>
-
-  <p>
-  <%= form.submit %>
-  <%# creates a button called Create %>
-  <%# automatically directs request to the create path: articles_path POST @articles#create %>
-  </p>
-
-  <% end %>
+<%= render partial: 'articles/shared/form' %>
