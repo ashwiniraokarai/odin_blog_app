@@ -7,6 +7,11 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    @comment = Comment.new
+    @comment.article_id = @article.id
+    # Why do Comment.new instead of the more intuitive @article.comments.new?
+    # Due to the Rails’ mass-assignment protection, the article_id attribute of the new Comment object
+    # needs to be manually assigned with the id of the Article.
   end
 
   def new
