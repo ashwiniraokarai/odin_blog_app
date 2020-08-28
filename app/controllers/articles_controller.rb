@@ -7,9 +7,11 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    # Wrapping a blank (unsaved) object in @comment instance var
+    # just to get around the nil error for @comment on form.
     @comment = Comment.new
     @comment.article_id = @article.id
-    # Why do Comment.new instead of the more intuitive @article.comments.new?
+    # Why do Comment.new instead of the more intuitive @article.comments.new like how you'd in console?
     # Due to the Rails’ mass-assignment protection, the article_id attribute of the new Comment object
     # needs to be manually assigned with the id of the Article.
   end
@@ -17,7 +19,7 @@ class ArticlesController < ApplicationController
   def new
     # Wrapping a blank (unsaved) object in @article instance var
     # just to get around the nil error for @article on form.
-    # If you tried this in the console, the resulting object look like so:
+    # If you tried this in the console, the resulting object looks like so:
     # => #<Article id: nil, title: nil, body: nil, created_at: nil, updated_at: nil>
     @article = Article.new
   end
