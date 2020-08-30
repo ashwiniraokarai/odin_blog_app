@@ -1,8 +1,16 @@
 <p>Rendering show.html via articles#show</p>
 
-<p><%= flash.notice %></p>
-<p><%= flash.alert %></p>
+<div>
+  <p><%= flash.notice %></p>
+  <p><%= flash.alert %></p>
+  <% if @comment.errors.any? %>
+    <%= @comment.errors.full_messages do |error| %>
+      <%= error %>
+    <% end %>
+  <% end %>
+</div>
 
+<br>
 <div>
   <b><%= @article.title %></b>
   <p><%= @article.body %></p>
@@ -15,6 +23,7 @@
 <p> Post your comment here! </p>
 <!-- Write a form to post comment -->
 <div>
+
 <%=  form_for([@article, @comment]) do |form| %>
   <p><%= form.label :author_name %></p>
   <p><%= form.text_field :author_name %></p>
