@@ -20,27 +20,5 @@
   <p><%= link_to "Back to index", articles_path %></p>
 </div>
 <br>
-<p> Post your comment here! </p>
-<!-- Write a form to post comment -->
-<div>
 
-<%=  form_for([@article, @comment]) do |form| %>
-  <p><%= form.label :author_name %></p>
-  <p><%= form.text_field :author_name %></p>
-  <p><%= form.label :body %></p>
-  <p><%= form.text_area :body %></p>
-  <%= form.submit %>
-<% end %>
-</div>
-<hr>
-
-<p> Comments: </p>
-
-<p><% @article.comments.each do |comment| %></p>
-<td>
-  <tr>"<%= comment.body %>"</tr>
-  <div>
-  <tr>Posted by:  <%= comment.author_name %></tr>
-  </div>
-</td>
-<% end %>
+<%= render partial: 'comments/shared/form' %>
