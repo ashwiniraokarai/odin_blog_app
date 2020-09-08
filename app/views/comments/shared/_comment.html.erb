@@ -1,10 +1,8 @@
 <p> Comments: </p>
 
-<p><% @article.comments.each do |comment| %></p>
 <td>
   <tr>"<%= comment.body %>"</tr>
   <div>
   <tr>Posted by:  <%= comment.author_name %></tr>
   </div>
 </td>
-<% end %>

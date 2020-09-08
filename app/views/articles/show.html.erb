@@ -23,4 +23,4 @@
 
 <%= render partial: 'comments/shared/form' %>
 
-<%= render partial: 'comments/shared/show_comments' %>
+<%= render partial: 'comments/shared/comment', collection: @article.comments %>
