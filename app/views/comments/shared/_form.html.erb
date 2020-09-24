@@ -3,9 +3,9 @@
 <div>
 
 <%=  form_for([@article, @comment]) do |form| %>
-  <p><%= form.label :author_name %></p>
+  <p><%= form.label :author_name, "Your Name" %></p>
   <p><%= form.text_field :author_name %></p>
-  <p><%= form.label :body %></p>
+  <p><%= form.label :body, "Your Comment" %></p>
   <p><%= form.text_area :body %></p>
   <%= form.submit %>
 <% end %>
